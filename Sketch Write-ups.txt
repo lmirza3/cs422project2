@@ -1,0 +1,45 @@
+On Screen - When a user approaches Glass+ a login screen
+will appear. This screen allows a user to choose among 3 options:
+Choose an existing user account, register a new user, or
+continue with a guest account.
+
+Login Screen - When a user selects a pre-extisting account
+they are taken to the user login screen. The only present
+UI elements on this screen are the chosen users tile, a 
+keypad to enter in the user's entry pin and a log in button
+to log into the user account once the pin has been entered.
+
+Home Screen - The Home Screen appears once a user has been 
+selected and their corresponding pin entered. It offers a
+multitude of docked features. Starting at the top left corner
+of the interface is a weather widget displaying the current
+temperature and an illustration of weather conditions. A 
+greeting followed by the chosen user's name is displayed in the
+top center of the display, followed by a Clock widget in the
+top right corner which shows the current time and date. On
+the bottom left is the settings menu represented by a small 
+gear icon. The bottom center of the display allows the user
+to access the many different info screens available in Glass+
+which include, Plan, News, Health, Social, and Media. To the 
+right of that in the corner is a personalized user icon which
+can be changed.
+
+Alerts - If the user has any unseen notifications they will
+appear in the center of the Glass+ interface in the form of
+the Alerts window. They can tap on an alert to be taken to 
+that alert's corresponding info screen or the user can tap
+the x icon in the top right corner to dismiss their alerts
+and have the alerts window disappear.
+
+Detailed Weather - Upon tapping anywhere on the weather 
+widget a detailed weather menu will appear. This menu will
+display a more detailed daily forecast as well as a weekly
+forecast that has selectable days to display more detailed
+information for each individual day in the week.
+
+Calender - Upon tapping anywhere on the clock widget a 
+calender will appear highlighting the current date and 
+displaying the days for the rest of the month. Weekends and
+holidays are highlighted with red text.
+
+Plan Menu - 
