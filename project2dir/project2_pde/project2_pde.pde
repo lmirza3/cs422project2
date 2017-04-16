@@ -39,7 +39,10 @@ void setup(){
 }
 
 void draw(){
-  //draw loop
+
+  button_s.action_press();
+  button_s.showImgButton();
+  
 }
 
 class Button {
@@ -113,4 +116,58 @@ class ImageButton extends Button {
   
   
 
+}
+
+
+class Screen {
+  
+  String name;
+  
+  
+}
+
+class LoginScreen extends Screen {
+
+  String title;
+  ImageButton guestBtn, addUserBtn, loginBtn;
+  Numpad numpad;
+  
+  
+  
+  
+}
+
+class ActivityScreens extends Screen {}
+
+
+class SettingsScreen extends Screen {}
+
+class Numpad {}
+
+class Textfield {
+
+  String text;
+  boolean isVisible = true;
+  ImageButton backArrowBtn;
+  PImage field;
+  
+  void addText(int x, int y) {
+    text(this.text, x, y);
+  }
+  
+  void setTextVisibility (boolean visible) {
+    if (visible) {fill(0,0,0); this.isVisible = true;}
+    else {fill(255,255,255); this.isVisible = false;}
+  }
+  
+  void setField(int x, int y) {
+    image(this.field, x, y);
+  }
+  
+  void setArrowBtn (ImageButton backArrow){
+  
+    this.backArrowBtn = backArrow;
+    
+  }
+  
 }
