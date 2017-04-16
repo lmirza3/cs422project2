@@ -119,7 +119,7 @@ class ImageButton extends Button {
 }
 
 
-class Screen {
+class Screen extends PShape{
   
   String name;
   
@@ -138,7 +138,6 @@ class LoginScreen extends Screen {
 }
 
 class ActivityScreens extends Screen {}
-
 
 class SettingsScreen extends Screen {}
 
@@ -165,9 +164,7 @@ class Textfield {
   }
   
   void setArrowBtn (ImageButton backArrow){
-  
     this.backArrowBtn = backArrow;
-    
   }
   
 }
