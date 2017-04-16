@@ -14,8 +14,9 @@ PImage us_sample, ps_sample;
 Button test, test2;
 PShape p;
 
-//Flags
-boolean mouseClicked = false;
+// Flags
+boolean testbtn = false;
+boolean test2btn = false;
 
 void setup(){  
    
@@ -60,8 +61,13 @@ void draw(){
 
 void mouseClicked(){
   
-  if (mouseClicked) mouseClicked = false;
-  else mouseClicked = true;
+  // take into account scope of screen and scope of button
+  // if (screen1)
+  //    if (button 1 && clicked = false) clicked = true
+  //    else if (button 1 && clicked = true) clicked = false 
+  
+  if (test.isMouseInRange(test.x, test.y, test.w, test.h) && test.isPressed == false) {test.isPressed = true;}
+  else if (test.isMouseInRange(test.x, test.y, test.w, test.h) && test.isPressed == true) {test.isPressed = false;}
   
 }
 
@@ -79,8 +85,6 @@ class Button {
   boolean isMouseInRange = false;
   boolean isPressed = false;
   
-  boolean isPressedNew = false;
-  
   Button(int nx, int ny, int nw, int nh){
     this.x = nx;
     this.y = ny;
@@ -97,26 +101,26 @@ class Button {
     button.setVisible(visible);
   }
   
-  void pressed(){
+  //void pressed(){
     
-    if (isMouseInRange && mouseClicked){
-      isPressed = true;
-    }
-    else if (isMouseInRange && !mouseClicked) {
-      isPressed = false;
-    }
-  }
+  //  if (isMouseInRange && isClicked){
+  //    isPressed = true;
+  //  }
+  //  else {
+  //    isPressed = false;
+  //  }
+  //}
   
-  void showButton(){
-    shape(button);
-    button.setFill(bColor);
-  }
+   void showButton(){
+      shape(button);
+      button.setFill(bColor);
+   }
   
    void action_press(){
   
-    updateMouseRange();
+    //updateMouseRange();
     
-    pressed();
+    //pressed();
     
     if (isPressed) bColor = pressed;
     else bColor = unpressed;
