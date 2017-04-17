@@ -5,7 +5,10 @@
 
 // screen images
 PImage basic_background, basic_background2, alerts, login, weather, accounts, accounts2;
-PImage current;
+PImage current, off;
+
+// mouseclick counter
+int counter = 0;
 
 // Screens
 LoginScreen loginscreen;
@@ -16,13 +19,36 @@ PImage us_sample, ps_sample;
 //Buttons
 //ImageButton button_s;
 Button test, test2;
-PShape p;
 
 // Flags
 int testflag = 0;
 int loginflag= 1;
 int guestmainflag = 0;
 int newuserflag = 0;
+int existinguserflag = 0;
+int afteralertsflag = 0;
+int calendarflag = 0;
+int newsflag = 0;
+int healthflag = 0;
+int planflag = 0;
+int shopflag = 0;
+int weatherflag = 0;
+int healthtoothbrushflag = 0;
+int socialtwitterflag = 0;
+int socialfacebookflag = 0;
+int socialredditflag = 0;
+int mediaflag = 0;
+int socialsettingsflag = 0;
+int settingsflag = 0;
+int profileflag = 0;
+int newsettingsflag = 0;
+int mediamusicflag = 0;
+int mediasettingsflag = 0;
+int locationsettingsflag = 0;
+int languagesettingsflag = 0;
+int socialinstagramflag = 0;
+int waterusagesettingsflag = 0;
+int offflag = 0;
 
 
 void setup(){  
@@ -39,6 +65,7 @@ void setup(){
   //accounts = loadImage("screens/Accounts.jpg");
   accounts = loadImage("screens/rsz_1accounts.jpg");
   accounts2 = loadImage("screens/Accounts2.jpg");
+  off = loadImage("screens/rsz_off.jpg");
   
   us_sample = loadImage("btn_imgs/rsz_solid_blue.png");
   ps_sample = loadImage("btn_imgs/rsz_ff0000.png");
@@ -52,15 +79,20 @@ void setup(){
   test = new Button(x,y,w,h);
   test2 = new Button(150,150,25,25);
   
+  //initialize at login screen
   current = accounts;
   
   // screens
   loginscreen = new LoginScreen("login");
   
-  
 }
 
 void draw(){
+  //counter = second();
+  //if (counter == 5){
+  //  current = off;
+  //  offflag = 1;
+  //}
   
   background(current);
   loginscreen.showScreen();
@@ -93,15 +125,13 @@ void draw(){
     // todo
   }
   
-  
-  
+ 
   //System.out.println(mouseX + " " + mouseY);
 
-  
-  
 }
 
 void mouseClicked(){
+  
   
   // take into account scope of screen and scope of button
   // if (screen1)
@@ -111,6 +141,11 @@ void mouseClicked(){
   if (test.isMouseInRange(test.x, test.y, test.w, test.h) && test.isPressed == false) {
     test.isPressed = true;
   } else if (test.isMouseInRange(test.x, test.y, test.w, test.h) && test.isPressed == true) {test.isPressed = false;}
+  
+  //if (offflag == 1 && loginflag == 1){
+  //  current = login;
+  //  offflag = 0;
+  //}
   
   if (loginflag == 1){
     // guest button pressing/unpressing
@@ -316,7 +351,11 @@ class LoginScreen extends Screen {
   
 }
 
-class ActivityScreens extends Screen {}
+class ActivityScreens extends Screen {
+
+   
+
+}
 
 class SettingsScreen extends Screen {}
 
