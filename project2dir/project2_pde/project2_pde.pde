@@ -6,6 +6,9 @@
 // screen images
 PImage basic_background, basic_background2, alerts, login, weather, accounts, accounts2;
 
+// Screens
+LoginScreen loginscreen;
+
 //Button images
 PImage us_sample, ps_sample;
 
@@ -15,12 +18,14 @@ Button test, test2;
 PShape p;
 
 // Flags
-boolean testbtn = false;
-boolean test2btn = false;
+int testflag = 0;
+int loginflag= 0;
+
+
 
 void setup(){  
    
-  size(400,400);
+  size(683,384);
   
   //loading screens
   basic_background = loadImage("screens/basicbackground.jpg");
@@ -28,7 +33,8 @@ void setup(){
   alerts = loadImage("screens/Alerts.jpg");
   login = loadImage("screens/Login.jpg");
   weather = loadImage("screens/Weather.jpg");
-  accounts = loadImage("screens/Accounts.jpg");
+  //accounts = loadImage("screens/Accounts.jpg");
+  accounts = loadImage("screens/rsz_1accounts.jpg");
   accounts2 = loadImage("screens/Accounts2.jpg");
   
   us_sample = loadImage("btn_imgs/rsz_solid_blue.png");
@@ -43,17 +49,30 @@ void setup(){
   test = new Button(x,y,w,h);
   test2 = new Button(150,150,25,25);
   
+  // screens
+  loginscreen = new LoginScreen("login");
+  
 }
 
 void draw(){
+  
+  background(accounts);
+  loginscreen.showScreen();
 
   //button_s.action_press();
   //button_s.showImgButton();
-  test.action_press();
-  test.showButton();
   
-  test2.action_press();
-  test2.showButton();
+  if (testflag == 1){
+    test.action_press();
+    test.showButton();
+  
+    test2.action_press();
+    test2.showButton();
+  }
+  
+  
+  
+  System.out.println(mouseX + " " + mouseY);
 
   
   
@@ -66,8 +85,12 @@ void mouseClicked(){
   //    if (button 1 && clicked = false) clicked = true
   //    else if (button 1 && clicked = true) clicked = false 
   
-  if (test.isMouseInRange(test.x, test.y, test.w, test.h) && test.isPressed == false) {test.isPressed = true;}
+  if (test.isMouseInRange(test.x, test.y, test.w, test.h) && test.isPressed == false) {
+    test.isPressed = true;
+  }
   else if (test.isMouseInRange(test.x, test.y, test.w, test.h) && test.isPressed == true) {test.isPressed = false;}
+  
+   
   
 }
 
@@ -78,8 +101,8 @@ class Button {
   
   int x, y, w, h;
   
-  color pressed = color(255,159,204);
-  color unpressed = color(255,204,229);
+  color pressed = color(255,255,255,10);
+  color unpressed = color(255,255,255,0);
   color bColor;
   
   boolean isMouseInRange = false;
@@ -112,8 +135,10 @@ class Button {
   //}
   
    void showButton(){
+      
       shape(button);
       button.setFill(bColor);
+      button.setStroke(bColor);
    }
   
    void action_press(){
@@ -194,8 +219,40 @@ class Screen extends PShape{
 class LoginScreen extends Screen {
 
   String title;
-  //ImageButton guestBtn, addUserBtn, loginBtn;
+  
+  Button guest, adduser;
   Numpad numpad;  
+  
+  // guest button dimenstions
+  int guestx = 85;
+  int guesty = 285;
+  int guestw = 172;
+  int guesth = 52;
+  
+  // adduser button dimensions
+  int nuserx = 425;
+  int nusery = 286;
+  int nuserw = 173;
+  int nuserh = 49;
+  
+  LoginScreen(String n){
+  
+    this.title = n;
+    this.guest = new Button(guestx, guesty, guestw, guesth);
+    this.adduser = new Button(nuserx, nusery, nuserw, nuserh);
+    //this.numpad = np;
+  
+  }
+  
+ void clearButtons(){
+   this.guest.getButton().setVisible(false);
+   this.adduser.getButton().setVisible(false);
+ }
+ 
+ void showScreen(){
+   this.guest.action_press(); this.guest.showButton();
+   this.adduser.action_press(); this.adduser.showButton();
+ }
   
 }
 
