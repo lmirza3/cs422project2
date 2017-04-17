@@ -4,24 +4,21 @@
 
 
 // screen images
-PImage basic_background, 
-       basic_background2, 
-       alerts, 
+PImage alerts, 
        login, 
        weather, 
        main, 
        accounts,
        guestmain,
-       numpad;
+       userprofile1;
 PImage current, off;
-
 
 // Flags
 int mainflag = 1;
 int loginflag= 0;
 int userprofile1flag = 0;
+int userprofile1mainflag = 0;
 int guestmainflag = 0;
-int numpadflag = 0;
 int newuserflag = 0;
 int existinguserflag = 0;
 int afteralertsflag = 0;
@@ -72,50 +69,86 @@ int guesty = 1150;
 int guestw = 710;
 int guesth = 200;
 
-// back button on numpad
-int back1x = 540;
-int back1y = 950;
-int back1w = 340;
-int back1h = 200;
+int planx = 570;
+int plany = 1400;
+int planw = 250;
+int planh = 100;
 
-// login button on numpad
-int login2x = 1700;
-int login2y = 955;
-int login2w = 700;
-int login2h = 200;
+int newsx = 870;
+int newsy = 1400;
+int newsw = 250;
+int newsh = 100;
 
-// numpad buttons
-//int zerox
+int healthx = 1190;
+int healthy = 1400;
+int healthw = 300;
+int healthh = 100;
+
+int socialx = 1590;
+int socialy = 1400;
+int socialw = 250;
+int socialh = 100;
+
+int mediax = 1900;
+int mediay = 1400;
+int mediaw = 250;
+int mediah = 100;
+
+int settingsx = 40;
+int settingsy = 1380;
+int settingsw = 150;
+int settingsh = 150;
+
+int userprofilesx = 2560;
+int userprofilesy = 1380;
+int userprofilesxw = 150;
+int userprofilesxh = 150;
+
+int weatherx = 50;
+int weathery = 30;
+int weatherw = 430;
+int weatherh = 180;
+
+int timex = 2250;
+int timey = 30;
+int timew = 460;
+int timeh = 230;
+
 
 void setup(){
   size(2732,1536);
-  main = loadImage("Accounts.jpg");
+  main = loadImage("Main.jpg");
   accounts = loadImage("Accounts2.jpg");
   alerts = loadImage("Alerts.jpg");
   guestmain = loadImage("Guest.jpg");
-  numpad = loadImage("Login.jpg");
+  userprofile1 = loadImage("BasicBackground2.jpg");
   
   current = main;
+  
+  //if (loadStrings("users.txt") == null){
+  //  // no users exist
+  //}
+  //else users = loadStrings("users.txt");
   
 }
 
 void draw(){
   background(current);
-  //rect(1190,780,107,135);
+  //rect(2250,30,460,230);
 
   if (loginflag == 1){
     current = accounts;  
   }
   
-  if (userprofile1flag == 1){
+  else if (userprofile1flag == 1){
+    current = userprofile1;
+  }
+  
+  else if (userprofile1mainflag == 1){
     current = alerts;
   }
   
-  if (numpadflag == 1){
-    current = numpad;
-  }
-  
-  if (guestmainflag == 1){
+  else if (guestmainflag == 1){
     current = guestmain;
   }
 
@@ -152,176 +185,20 @@ void mouseClicked(){
   
   if (loginflag == 1){
     if (isMouseInRange(up1x,up1y,up1w,up1h)){
-      numpadflag = 1;
+      userprofile1flag = 1;
       loginflag = 0;
     }
     if (isMouseInRange(guestx,guesty,guestw,guesth)){
       guestmainflag = 1;
       loginflag = 0;
     }
-    
-    if (numpadflag == 1){
-      //todo
-      // show alerts page
-      if (isMouseInRange(back1x,back1y,back1w,back1h)){
-        loginflag = 1;
-        numpadflag = 0;
-      }
-    }
-   
+       
   }
   
-  //if (newuserflag == 1){//todo
-  //}
-  
-}
-
-class Button {
-  
-  PShape button;
-  
-  int x, y, w, h;
-  
-  color pressed = color(255,255,255,45);
-  color unpressed = color(255,255,255,0);
-  color bColor;
-  
-  boolean isMouseInRange = false;
-  boolean isPressed = false;
-  
-  Button(int nx, int ny, int nw, int nh){
-    this.x = nx;
-    this.y = ny;
-    this.w = nw;
-    this.h = nh;
-    this.button = createShape(RECT,x,y,w,h);
+  if (userprofile1flag == 1){
+    userprofile1mainflag = 1;
+    userprofile1flag = 0;
   }
   
-  PShape getButton(){
-    return button;
-  }
-  
-  void setVisibility(boolean visible){
-    button.setVisible(visible);
-  }
-  
-   void showButton(){
-      shape(button);
-      button.setFill(bColor);
-      button.setStroke(color(255,255,255,0));
-   }
-  
-   void action_press(){
-  
-    //updateMouseRange();
-    
-    //pressed();
-    
-    if (isPressed) bColor = pressed;
-    else bColor = unpressed;
-    
-   }
- 
-  void updateMouseRange(){
-  
-    if (isMouseInRange(x,y,w,h)) isMouseInRange = true;
-    else isMouseInRange = false;
-     
-  }
-  
-  boolean isMouseInRange(int x, int y, int w, int h){
-    
-    if (mouseX >= x && mouseX <= x+w && mouseY >= y && mouseY <= y+h){
-      return true;
-    }
-    else return false; 
-  }  
-}
-
-
-class Screen extends PShape{
-  
-  String name;
-    
-}
-
-class LoginScreen extends Screen {
-
-  String title;
-  
-  Button guest, adduser;
-  Numpad numpad;  
-  
-  // guest button dimenstions
-  int guestx = 85;
-  int guesty = 285;
-  int guestw = 172;
-  int guesth = 52;
-  
-  // adduser button dimensions
-  int nuserx = 425;
-  int nusery = 286;
-  int nuserw = 173;
-  int nuserh = 49;
-  
-  LoginScreen(String n){
-  
-    this.title = n;
-    this.guest = new Button(guestx, guesty, guestw, guesth);
-    this.adduser = new Button(nuserx, nusery, nuserw, nuserh);
-    //this.numpad = np;
-  
-  }
-  
-  void activateButtons(){
-    this.guest.getButton().setVisible(true);
-    this.adduser.getButton().setVisible(true);
-  }
-  
- void clearButtons(){
-   this.guest.getButton().setVisible(false);
-   this.adduser.getButton().setVisible(false);
- }
- 
- void showScreen(){
-   this.guest.action_press(); this.guest.showButton();
-   this.adduser.action_press(); this.adduser.showButton();
- }
-  
-}
-
-class ActivityScreens extends Screen {
-
-   
-
-}
-
-class SettingsScreen extends Screen {}
-
-class Numpad {}
-
-class Textfield {
-
-  String text;
-  boolean isVisible = true;
-  //ImageButton backArrowBtn;
-  PImage field;
-  
-  void addText(int x, int y) {
-    text(this.text, x, y);
-  }
-  
-  void setTextVisibility (boolean visible) {
-    if (visible) {fill(0,0,0); this.isVisible = true;}
-    else {fill(255,255,255); this.isVisible = false;}
-  }
-  
-  void setField(int x, int y) {
-    image(this.field, x, y);
-  }
-  
-  //void setArrowBtn (ImageButton backArrow){
-  //  this.backArrowBtn = backArrow;
-  //}
   
 }
