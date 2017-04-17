@@ -100,24 +100,24 @@ void setup(){
 }
 
 void draw(){
-  background(numpad);
-  rect(1190,780,107,135);
+  background(current);
+  //rect(1190,780,107,135);
 
-  //if (loginflag == 1){
-  //  current = accounts;  
-  //}
+  if (loginflag == 1){
+    current = accounts;  
+  }
   
-  //if (userprofile1flag == 1){
-  //  current = alerts;
-  //}
+  if (userprofile1flag == 1){
+    current = alerts;
+  }
   
-  //if (numpadflag == 1){
-  //  current = numpad;
-  //}
+  if (numpadflag == 1){
+    current = numpad;
+  }
   
-  //if (guestmainflag == 1){
-  //  current = guestmain;
-  //}
+  if (guestmainflag == 1){
+    current = guestmain;
+  }
 
 }
 
@@ -138,38 +138,38 @@ void mouseClicked(){
   //    else if (button 1 && clicked = true) clicked = false 
   
   
-  //if (mainflag == 1){
-  //  // guest button pressing/unpressing
-  //  if (isMouseInRange(loginx, loginy, loginw, loginh)){
-  //    loginflag = 1;
-  //    mainflag = 0;
-  //  }
-  //  if (isMouseInRange(nuserx, nusery, nuserw, nuserh)){
-  //    newuserflag = 1;
-  //    mainflag = 0;
-  //  }
-  //}
+  if (mainflag == 1){
+    // guest button pressing/unpressing
+    if (isMouseInRange(loginx, loginy, loginw, loginh)){
+      loginflag = 1;
+      mainflag = 0;
+    }
+    if (isMouseInRange(nuserx, nusery, nuserw, nuserh)){
+      newuserflag = 1;
+      mainflag = 0;
+    }
+  }
   
-  //if (loginflag == 1){
-  //  if (isMouseInRange(up1x,up1y,up1w,up1h)){
-  //    numpadflag = 1;
-  //    loginflag = 0;
-  //  }
-  //  if (isMouseInRange(guestx,guesty,guestw,guesth)){
-  //    guestmainflag = 1;
-  //    loginflag = 0;
-  //  }
+  if (loginflag == 1){
+    if (isMouseInRange(up1x,up1y,up1w,up1h)){
+      numpadflag = 1;
+      loginflag = 0;
+    }
+    if (isMouseInRange(guestx,guesty,guestw,guesth)){
+      guestmainflag = 1;
+      loginflag = 0;
+    }
     
-    //if (numpadflag == 1){
-    //  //todo
-    //  // show alerts page
-    //  if (isMouseInRange(back1x,back1y,back1w,back1h)){
-    //    loginflag = 1;
-    //    numpadflag = 0;
-    //  }
-    //}
+    if (numpadflag == 1){
+      //todo
+      // show alerts page
+      if (isMouseInRange(back1x,back1y,back1w,back1h)){
+        loginflag = 1;
+        numpadflag = 0;
+      }
+    }
    
-  //}
+  }
   
   //if (newuserflag == 1){//todo
   //}
