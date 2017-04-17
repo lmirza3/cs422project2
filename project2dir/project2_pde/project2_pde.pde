@@ -19,8 +19,9 @@ PShape p;
 
 // Flags
 int testflag = 0;
-int loginflag= 0;
-
+int loginflag= 1;
+int guestmainflag = 0;
+int newuserflag = 0;
 
 
 void setup(){  
@@ -51,6 +52,7 @@ void setup(){
   
   // screens
   loginscreen = new LoginScreen("login");
+  
   
 }
 
@@ -87,9 +89,38 @@ void mouseClicked(){
   
   if (test.isMouseInRange(test.x, test.y, test.w, test.h) && test.isPressed == false) {
     test.isPressed = true;
-  }
-  else if (test.isMouseInRange(test.x, test.y, test.w, test.h) && test.isPressed == true) {test.isPressed = false;}
+  } else if (test.isMouseInRange(test.x, test.y, test.w, test.h) && test.isPressed == true) {test.isPressed = false;}
   
+  if (loginflag == 1){
+    // guest button pressing/unpressing
+    if (loginscreen.guest.isMouseInRange(loginscreen.guestx, loginscreen.guesty, loginscreen.guestw, loginscreen.guesth) && loginscreen.guest.isPressed == false){
+      loginscreen.guest.isPressed = true;
+    } else if (loginscreen.guest.isMouseInRange(loginscreen.guestx, loginscreen.guesty, loginscreen.guestw, loginscreen.guesth) && 
+    loginscreen.guest.isPressed == true){loginscreen.guest.isPressed = false; }
+    
+    // add user button pressing/unpressing
+    if (loginscreen.adduser.isMouseInRange(loginscreen.nuserx, loginscreen.nusery, loginscreen.nuserw, loginscreen.nuserh) 
+    && loginscreen.adduser.isPressed == false){
+      loginscreen.adduser.isPressed = true;
+      guestmainflag = 1;
+      loginflag = 0;
+      delay(200);
+      
+    } else if (loginscreen.adduser.isMouseInRange(loginscreen.nuserx, loginscreen.nusery, loginscreen.nuserw, loginscreen.nuserh) && 
+    loginscreen.adduser.isPressed == true){
+      loginscreen.adduser.isPressed = false;
+      newuserflag = 1;
+      loginflag = 1;
+    }
+  }
+  
+  if (guestmainflag == 1){
+    // todo
+  }
+  
+  if (newuserflag == 1){
+    // todo
+  }
    
   
 }
@@ -101,7 +132,7 @@ class Button {
   
   int x, y, w, h;
   
-  color pressed = color(255,255,255,10);
+  color pressed = color(255,255,255,45);
   color unpressed = color(255,255,255,0);
   color bColor;
   
@@ -135,10 +166,9 @@ class Button {
   //}
   
    void showButton(){
-      
       shape(button);
       button.setFill(bColor);
-      button.setStroke(bColor);
+      button.setStroke(color(255,255,255,0));
    }
   
    void action_press(){
