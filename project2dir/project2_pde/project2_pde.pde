@@ -5,6 +5,7 @@
 
 // screen images
 PImage basic_background, basic_background2, alerts, login, weather, accounts, accounts2;
+PImage current;
 
 // Screens
 LoginScreen loginscreen;
@@ -31,7 +32,8 @@ void setup(){
   //loading screens
   basic_background = loadImage("screens/basicbackground.jpg");
   basic_background2 = loadImage("screens/basicbackground2.jpg");
-  alerts = loadImage("screens/Alerts.jpg");
+  //alerts = loadImage("screens/Alerts.jpg");
+  alerts = loadImage("screens/rsz_alerts.jpg");
   login = loadImage("screens/Login.jpg");
   weather = loadImage("screens/Weather.jpg");
   //accounts = loadImage("screens/Accounts.jpg");
@@ -50,6 +52,8 @@ void setup(){
   test = new Button(x,y,w,h);
   test2 = new Button(150,150,25,25);
   
+  current = accounts;
+  
   // screens
   loginscreen = new LoginScreen("login");
   
@@ -58,7 +62,7 @@ void setup(){
 
 void draw(){
   
-  background(accounts);
+  background(current);
   loginscreen.showScreen();
 
   //button_s.action_press();
@@ -72,9 +76,26 @@ void draw(){
     test2.showButton();
   }
   
+  //show login screen
+  if (loginflag == 1){
+    loginscreen.activateButtons();
+  }
+  
+  // show guest screen
+  if (guestmainflag == 1){
+    //delay(200);
+    //System.out.println("PESHAB");
+    current = alerts;
+  }
+  
+  // show new user screen
+  if (newuserflag == 1){
+    // todo
+  }
   
   
-  System.out.println(mouseX + " " + mouseY);
+  
+  //System.out.println(mouseX + " " + mouseY);
 
   
   
@@ -95,6 +116,9 @@ void mouseClicked(){
     // guest button pressing/unpressing
     if (loginscreen.guest.isMouseInRange(loginscreen.guestx, loginscreen.guesty, loginscreen.guestw, loginscreen.guesth) && loginscreen.guest.isPressed == false){
       loginscreen.guest.isPressed = true;
+      guestmainflag = 1;
+      loginflag = 0;
+      loginscreen.clearButtons();
     } else if (loginscreen.guest.isMouseInRange(loginscreen.guestx, loginscreen.guesty, loginscreen.guestw, loginscreen.guesth) && 
     loginscreen.guest.isPressed == true){loginscreen.guest.isPressed = false; }
     
@@ -102,22 +126,23 @@ void mouseClicked(){
     if (loginscreen.adduser.isMouseInRange(loginscreen.nuserx, loginscreen.nusery, loginscreen.nuserw, loginscreen.nuserh) 
     && loginscreen.adduser.isPressed == false){
       loginscreen.adduser.isPressed = true;
-      guestmainflag = 1;
+      newuserflag = 1;
       loginflag = 0;
-      delay(200);
-      
+      //delay(200);
     } else if (loginscreen.adduser.isMouseInRange(loginscreen.nuserx, loginscreen.nusery, loginscreen.nuserw, loginscreen.nuserh) && 
     loginscreen.adduser.isPressed == true){
       loginscreen.adduser.isPressed = false;
-      newuserflag = 1;
-      loginflag = 1;
+      //newuserflag = 1;
+      //loginflag = 1;
     }
   }
   
+  // handle buttons on guest screen
   if (guestmainflag == 1){
     // todo
   }
   
+  // handle buttons on new user screen
   if (newuserflag == 1){
     // todo
   }
@@ -272,6 +297,11 @@ class LoginScreen extends Screen {
     this.adduser = new Button(nuserx, nusery, nuserw, nuserh);
     //this.numpad = np;
   
+  }
+  
+  void activateButtons(){
+    this.guest.getButton().setVisible(true);
+    this.adduser.getButton().setVisible(true);
   }
   
  void clearButtons(){
