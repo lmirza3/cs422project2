@@ -219,6 +219,6 @@ class Pic extends Button {
   
   void display()
   {
-    image(this.image,x,y);
+    image(image,x,y);
   }
 }
