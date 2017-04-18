@@ -197,10 +197,30 @@ int reddity = 976;
 int redditw = 187;
 int reddith = 153;
 
+int langx = 46;
+int langy = 380;
+int langw = 250;
+int langh = 67;
+
+int locx = 46;
+int locy = 470;
+int locw = 270;
+int loch = 67;
+
+int brightx = 46;
+int brighty = 560;
+int brightw = 310;
+int brighth = 67;
+
+int waterx = 46;
+int watery = 650;
+int waterw = 345;
+int waterh = 67;
+
 
 void setup(){
   size(2732,1536);
-  main = loadImage("mainaccounts.jpg");
+  main = loadImage("mainaccount2.jpg");
   accounts = loadImage("accounticons.jpg");
   alerts = loadImage("Alerts.jpg");
   guestmain = loadImage("Guest.jpg");
@@ -226,7 +246,7 @@ void setup(){
   
   language = loadImage("Language.jpg");
   waterusage = loadImage("waterusage.jpg");
-  brightness = loadImage("Brightness.jpg");
+  brightness = loadImage("bright.jpg");
   location = loadImage("Location.jpg");
   
   
@@ -234,25 +254,7 @@ void setup(){
   
 }
 
-int langx = 46;
-int langy = 380;
-int langw = 250;
-int langh = 67;
 
-int locx = 46;
-int locy = 470;
-int locw = 270;
-int loch = 67;
-
-int brightx = 46;
-int brighty = 560;
-int brightw = 310;
-int brighth = 67;
-
-int waterx = 46;
-int watery = 650;
-int waterw = 345;
-int waterh = 67;
 
 void draw(){
   background(current);
@@ -342,9 +344,9 @@ void draw(){
   }else if (brightnessflag == 1){
     current = brightness;
   }else if (locationflag == 1){
-    current = facebook;
+    current = location;
   }else if (waterusageflag == 1){
-    current = facebook;
+    current = waterusage;
   }
 
   
@@ -1243,110 +1245,162 @@ void mouseClicked(){
       usersflag = 1;
       settingsflag = 0;
     }
+       if (isMouseInRange(waterx,watery,waterw,waterh)){
+      waterusageflag = 1;
+      settingsflag = 0;
+    }
+    if (isMouseInRange(langx,langy,langw,langh)){
+      languageflag = 1;
+      settingsflag = 0;
+    }
+    if (isMouseInRange(brightx,brighty,brightw,brighth)){
+      brightnessflag = 1;
+      settingsflag = 0;
+    }
+    if (isMouseInRange(locx,locy,locw,loch)){
+      locationflag = 1;
+      settingsflag = 0;
+    }
   }
   
   if (languageflag == 1){
     if (isMouseInRange(timex,timey,timew,timeh)){
       calendarflag = 1;
-      settingsflag = 0;
+      languageflag = 0;
     }
     if (isMouseInRange(weatherx,weathery,weatherw,weatherh)){
       weatherflag = 1;
-      settingsflag = 0;
+      languageflag = 0;
     }  
     if (isMouseInRange(planx,plany,planw,planh)){
       planflag = 1;
-      settingsflag = 0;
+      languageflag = 0;
     }
     if (isMouseInRange(newsx,newsy,newsw,newsh)){
       newsflag = 1;
-      settingsflag = 0;
+      languageflag = 0;
     }
     if (isMouseInRange(mediax,mediay,mediaw,mediah)){
       mediaflag = 1;
-      settingsflag = 0;
+      languageflag = 0;
     }
     if (isMouseInRange(healthx,healthy,healthw,healthh)){
       healthflag = 1;
-      settingsflag = 0;
+      languageflag = 0;
     }
     if (isMouseInRange(socialx,socialy,socialw,socialh)){
       socialflag = 1;
-      settingsflag = 0;
+     languageflag = 0;
     }
     if (isMouseInRange(userprofilesx,userprofilesy,userprofilesw,userprofilesh)){
       usersflag = 1;
-      settingsflag = 0;
+      languageflag = 0;
+    }
+    if (isMouseInRange(waterx,watery,waterw,waterh)){
+      waterusageflag = 1;
+      languageflag = 0;
+    }
+    if (isMouseInRange(brightx,brighty,brightw,brighth)){
+      brightnessflag = 1;
+      languageflag = 0;
+    }
+    if (isMouseInRange(locx,locy,locw,loch)){
+      locationflag = 1;
+      languageflag = 0;
     }
   }
   
   if (waterusageflag == 1){
     if (isMouseInRange(timex,timey,timew,timeh)){
       calendarflag = 1;
-      settingsflag = 0;
+      waterusageflag = 0;
     }
     if (isMouseInRange(weatherx,weathery,weatherw,weatherh)){
       weatherflag = 1;
-      settingsflag = 0;
+      waterusageflag = 0;
     }  
     if (isMouseInRange(planx,plany,planw,planh)){
       planflag = 1;
-      settingsflag = 0;
+      waterusageflag = 0;
     }
     if (isMouseInRange(newsx,newsy,newsw,newsh)){
       newsflag = 1;
-      settingsflag = 0;
+      waterusageflag = 0;
     }
     if (isMouseInRange(mediax,mediay,mediaw,mediah)){
       mediaflag = 1;
-      settingsflag = 0;
+      waterusageflag = 0;
     }
     if (isMouseInRange(healthx,healthy,healthw,healthh)){
       healthflag = 1;
-      settingsflag = 0;
+      waterusageflag = 0;
     }
     if (isMouseInRange(socialx,socialy,socialw,socialh)){
       socialflag = 1;
-      settingsflag = 0;
+      waterusageflag = 0;
     }
     if (isMouseInRange(userprofilesx,userprofilesy,userprofilesw,userprofilesh)){
       usersflag = 1;
-      settingsflag = 0;
+      waterusageflag = 0;
+    }
+    if (isMouseInRange(brightx,brighty,brightw,brighth)){
+      brightnessflag = 1;
+      waterusageflag = 0;
+    }
+    if (isMouseInRange(langx,langy,langw,langh)){
+      languageflag = 1;
+      waterusageflag = 0;
+    }
+    if (isMouseInRange(locx,locy,locw,loch)){
+      locationflag = 1;
+      waterusageflag = 0;
     }
   }
   
   if (brightnessflag == 1){
     if (isMouseInRange(timex,timey,timew,timeh)){
       calendarflag = 1;
-      settingsflag = 0;
+      brightnessflag = 0;
     }
     if (isMouseInRange(weatherx,weathery,weatherw,weatherh)){
       weatherflag = 1;
-      settingsflag = 0;
+      brightnessflag = 0;
     }  
     if (isMouseInRange(planx,plany,planw,planh)){
       planflag = 1;
-      settingsflag = 0;
+      brightnessflag = 0;
     }
     if (isMouseInRange(newsx,newsy,newsw,newsh)){
       newsflag = 1;
-      settingsflag = 0;
+      brightnessflag = 0;
     }
     if (isMouseInRange(mediax,mediay,mediaw,mediah)){
       mediaflag = 1;
-      settingsflag = 0;
+      brightnessflag = 0;
     }
     if (isMouseInRange(healthx,healthy,healthw,healthh)){
       healthflag = 1;
-      settingsflag = 0;
+      brightnessflag = 0;
     }
     if (isMouseInRange(socialx,socialy,socialw,socialh)){
       socialflag = 1;
-      settingsflag = 0;
+      brightnessflag = 0;
     }
     if (isMouseInRange(userprofilesx,userprofilesy,userprofilesw,userprofilesh)){
       usersflag = 1;
-      settingsflag = 0;
+      brightnessflag = 0;
+    }
+    if (isMouseInRange(waterx,watery,waterw,waterh)){
+      waterusageflag = 1;
+      brightnessflag = 0;
+    }
+    if (isMouseInRange(langx,langy,langw,langh)){
+      languageflag = 1;
+      brightnessflag = 0;
+    }
+    if (isMouseInRange(locx,locy,locw,loch)){
+      locationflag = 1;
+      brightnessflag = 0;
     }
   }
   
@@ -1387,12 +1441,12 @@ void mouseClicked(){
       waterusageflag = 1;
       locationflag = 0;
     }
-    if (isMouseInRange(userprofilesx,userprofilesy,userprofilesw,userprofilesh)){
-      usersflag = 1;
+    if (isMouseInRange(langx,langy,langw,langh)){
+      languageflag = 1;
       locationflag = 0;
     }
-    if (isMouseInRange(userprofilesx,userprofilesy,userprofilesw,userprofilesh)){
-      usersflag = 1;
+    if (isMouseInRange(brightx,brighty,brightw,brighth)){
+      brightnessflag = 1;
       locationflag = 0;
     }
   }
