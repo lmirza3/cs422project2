@@ -10,19 +10,31 @@ PImage alerts,
        main, 
        accounts,
        guestmain,
-       userprofile1;
+       userprofile1,
+       calendar,
+       settings,
+       users,
+       plan,
+       news,
+       health,
+       media,
+       social,
+       uber,
+       maps,
+       cart;
 PImage current, off;
 
 // Flags
 int mainflag = 1;
 int loginflag= 0;
 int userprofile1flag = 0;
-int userprofile1mainflag = 0;
 int guestmainflag = 0;
 int newuserflag = 0;
+int usersflag = 0;
 int existinguserflag = 0;
 int afteralertsflag = 0;
 int calendarflag = 0;
+int socialflag = 0;
 int newsflag = 0;
 int healthflag = 0;
 int planflag = 0;
@@ -101,8 +113,8 @@ int settingsh = 150;
 
 int userprofilesx = 2560;
 int userprofilesy = 1380;
-int userprofilesxw = 150;
-int userprofilesxh = 150;
+int userprofilesw = 150;
+int userprofilesh = 150;
 
 int weatherx = 50;
 int weathery = 30;
@@ -114,6 +126,22 @@ int timey = 30;
 int timew = 460;
 int timeh = 230;
 
+int uberx = 100;
+int ubery = 350;
+int uberw = 130;
+int uberh = 190;
+
+int mapsx = 100;
+int mapsy = 350;
+int mapsw = 130;
+int mapsh = 190;
+
+int cartx = 100;
+int carty = 350;
+int cartw = 130;
+int carth = 190;
+
+
 
 void setup(){
   size(2732,1536);
@@ -122,19 +150,27 @@ void setup(){
   alerts = loadImage("Alerts.jpg");
   guestmain = loadImage("Guest.jpg");
   userprofile1 = loadImage("BasicBackground2.jpg");
+  calendar = loadImage("Calendar.jpg");
+  settings = loadImage("Settings.jpg");
+  users = loadImage("Profile.jpg");
+  weather = loadImage("Weather.jpg");
+  plan = loadImage("Plan.jpg");
+  social = loadImage("Social.jpg");
+  news = loadImage("News.jpg");
+  health = loadImage("Health.jpg");
+  media = loadImage("Spotify.jpg");
+  uber = loadImage("Uber.jpg");
+  maps = loadImage("maps.jpg");
+  cart = loadImage("Shop.jpg");
+  
   
   current = main;
-  
-  //if (loadStrings("users.txt") == null){
-  //  // no users exist
-  //}
-  //else users = loadStrings("users.txt");
   
 }
 
 void draw(){
   background(current);
-  //rect(2250,30,460,230);
+  //rect(100,350,130,190);
 
   if (loginflag == 1){
     current = accounts;  
@@ -144,12 +180,37 @@ void draw(){
     current = userprofile1;
   }
   
-  else if (userprofile1mainflag == 1){
-    current = alerts;
-  }
-  
   else if (guestmainflag == 1){
     current = guestmain;
+  }
+  
+  else if (calendarflag == 1){
+    current = calendar;
+  }
+  
+  else if (settingsflag == 1){
+    current = settings;
+  }
+  else if (weatherflag == 1){
+    current = weather;
+  }
+  else if (usersflag == 1){
+    current = users;
+  }
+  else if (planflag == 1){
+    current = plan;
+  }
+  else if (newsflag == 1){
+    current = news;
+  }
+  else if (healthflag == 1){
+    current = health;
+  }
+  else if (socialflag == 1){
+    current = social;
+  }
+  else if (mediaflag == 1){
+    current = media;
   }
 
 }
@@ -196,8 +257,43 @@ void mouseClicked(){
   }
   
   if (userprofile1flag == 1){
-    userprofile1mainflag = 1;
-    userprofile1flag = 0;
+    if (isMouseInRange(settingsx,settingsy,settingsw,settingsh)){
+      settingsflag = 1;
+      userprofile1flag = 0;
+    }
+    if (isMouseInRange(timex,timey,timew,timeh)){
+      calendarflag = 1;
+      userprofile1flag = 0;
+    }
+    if (isMouseInRange(weatherx,weathery,weatherw,weatherh)){
+      weatherflag = 1;
+      userprofile1flag = 0;
+    }  
+    if (isMouseInRange(planx,plany,planw,planh)){
+      planflag = 1;
+      userprofile1flag = 0;
+    }
+    if (isMouseInRange(newsx,newsy,newsw,newsh)){
+      newsflag = 1;
+      userprofile1flag = 0;
+    }
+    if (isMouseInRange(mediax,mediay,mediaw,mediah)){
+      mediaflag = 1;
+      userprofile1flag = 0;
+    }
+    if (isMouseInRange(healthx,healthy,healthw,healthh)){
+      healthflag = 1;
+      userprofile1flag = 0;
+    }
+    if (isMouseInRange(socialx,socialy,socialw,socialh)){
+      socialflag = 1;
+      userprofile1flag = 0;
+    }
+    
+  }
+  
+  if (planflag == 1){
+    //do something
   }
   
   
