@@ -31,7 +31,8 @@ PImage alerts,
        language,
        waterusage,
        location,
-       brightness;
+       brightness,
+       tutorial;
 PImage current, off;
 
 // Flags
@@ -67,6 +68,8 @@ int languageflag = 0;
 int waterusageflag = 0;
 int brightnessflag = 0;
 int locationflag = 0;
+int tutorialflag = 0;
+int plainflag = 0;
 
 // login button dimensions
 int loginx = 320;
@@ -217,6 +220,16 @@ int watery = 650;
 int waterw = 345;
 int waterh = 67;
 
+int tutorialx = 995;
+int tutorialy = 1150;
+int tutorialw = 710;
+int tutorialh = 195;
+
+int plainmirrx = 1450;
+int plainmirry = 350;
+int plainmirrw = 1200;
+int plainmirrh = 950;
+
 
 void setup(){
   size(2732,1536);
@@ -249,6 +262,8 @@ void setup(){
   brightness = loadImage("bright.jpg");
   location = loadImage("Location.jpg");
   
+  tutorial = loadImage("Tutorial.jpg");
+  
   
   current = main;
   
@@ -258,9 +273,12 @@ void setup(){
 
 void draw(){
   background(current);
-  //rect(46,650,345,67);
+  //rect(1450,350,1200,950);
 
   //done
+  if (tutorialflag == 1){
+    current= tutorial;
+  }
   if (loginflag == 1){
     current = accounts;  
   }
@@ -347,8 +365,10 @@ void draw(){
     current = location;
   }else if (waterusageflag == 1){
     current = waterusage;
-  }
-
+  }else if (plainflag == 1){
+      current = userprofile1;
+    }
+    
   
 
 }
@@ -377,6 +397,10 @@ void mouseClicked(){
     }
     if (isMouseInRange(nuserx, nusery, nuserw, nuserh)){
       newuserflag = 1;
+      mainflag = 0;
+    }
+    if (isMouseInRange(tutorialx,tutorialy,tutorialw,tutorialh)){
+      tutorialflag = 1;  
       mainflag = 0;
     }
   }
@@ -486,6 +510,10 @@ void mouseClicked(){
       usersflag = 1;
       planflag = 0;
     }
+    if (isMouseInRange(plainmirrx,plainmirry,plainmirrw,plainmirrh)){
+      userprofile1flag =1;
+      planflag = 0;
+    }
   }
   
   if (newsflag == 1){
@@ -523,6 +551,10 @@ void mouseClicked(){
     }
     if (isMouseInRange(userprofilesx,userprofilesy,userprofilesw,userprofilesh)){
       usersflag = 1;
+      newsflag = 0;
+    }
+    if (isMouseInRange(plainmirrx,plainmirry,plainmirrw,plainmirrh)){
+      userprofile1flag =1;
       newsflag = 0;
     }
     
@@ -563,6 +595,10 @@ void mouseClicked(){
     }
     if (isMouseInRange(brushx,brushy,brushw,brushh)){
       brushflag = 1;
+      healthflag = 0;
+    }
+    if (isMouseInRange(plainmirrx,plainmirry,plainmirrw,plainmirrh)){
+      userprofile1flag =1;
       healthflag = 0;
     }
   }
@@ -606,6 +642,10 @@ void mouseClicked(){
     }
     if (isMouseInRange(spotifyx,spotifyy,spotifyw,spotifyh)){
       spotifyflag = 1;
+      mediaflag = 0;
+    }
+    if (isMouseInRange(plainmirrx,plainmirry,plainmirrw,plainmirrh)){
+      userprofile1flag =1;
       mediaflag = 0;
     }
   }
@@ -659,6 +699,10 @@ void mouseClicked(){
       redditflag = 1;
       socialflag = 0;
     }
+    if (isMouseInRange(plainmirrx,plainmirry,plainmirrw,plainmirrh)){
+      userprofile1flag =1;
+      socialflag = 0;
+    }
   }
   
   if (calendarflag == 1){
@@ -692,6 +736,10 @@ void mouseClicked(){
     }
     if (isMouseInRange(userprofilesx,userprofilesy,userprofilesw,userprofilesh)){
       usersflag = 1;
+      calendarflag = 0;
+    }
+    if (isMouseInRange(plainmirrx,plainmirry,plainmirrw,plainmirrh)){
+      userprofile1flag =1;
       calendarflag = 0;
     }
   }
@@ -729,6 +777,10 @@ void mouseClicked(){
       usersflag = 1;
       weatherflag = 0;
     }
+    if (isMouseInRange(plainmirrx,plainmirry,plainmirrw,plainmirrh)){
+      userprofile1flag =1;
+      weatherflag = 0;
+    }
   }
   
   if (usersflag == 1){
@@ -762,6 +814,10 @@ void mouseClicked(){
     }
     if (isMouseInRange(socialx,socialy,socialw,socialh)){
       socialflag = 1;
+      usersflag = 0;
+    }
+    if (isMouseInRange(plainmirrx,plainmirry,plainmirrw,plainmirrh)){
+      userprofile1flag =1;
       usersflag = 0;
     }
     
@@ -816,6 +872,10 @@ void mouseClicked(){
       usersflag = 1;
       uberflag = 0;
     }
+    if (isMouseInRange(plainmirrx,plainmirry,plainmirrw,plainmirrh)){
+      userprofile1flag =1;
+      uberflag = 0;
+    }
   }
   if (cartflag == 1){
     if (isMouseInRange(uberx,ubery,uberw,uberh)){
@@ -864,6 +924,10 @@ void mouseClicked(){
     }    
     if (isMouseInRange(userprofilesx,userprofilesy,userprofilesw,userprofilesh)){
       usersflag = 1;
+      cartflag = 0;
+    }
+    if (isMouseInRange(plainmirrx,plainmirry,plainmirrw,plainmirrh)){
+      userprofile1flag =1;
       cartflag = 0;
     }
   }
@@ -916,6 +980,10 @@ void mouseClicked(){
       usersflag = 1;
       mapsflag = 0;
     }
+    if (isMouseInRange(plainmirrx,plainmirry,plainmirrw,plainmirrh)){
+      userprofile1flag =1;
+      mapsflag = 0;
+    }
   }
   if (brushflag == 1){
     if (isMouseInRange(settingsx,settingsy,settingsw,settingsh)){
@@ -948,6 +1016,10 @@ void mouseClicked(){
     }
     if (isMouseInRange(userprofilesx,userprofilesy,userprofilesw,userprofilesh)){
       usersflag = 1;
+      brushflag = 0;
+    }
+    if (isMouseInRange(plainmirrx,plainmirry,plainmirrw,plainmirrh)){
+      userprofile1flag =1;
       brushflag = 0;
     }
   }
@@ -987,7 +1059,11 @@ void mouseClicked(){
     if (isMouseInRange(spotifyx,spotifyy,spotifyw,spotifyh)){
       spotifyflag = 1;
       musicflag = 0;
-    }  
+    }
+    if (isMouseInRange(plainmirrx,plainmirry,plainmirrw,plainmirrh)){
+      userprofile1flag =1;
+      musicflag = 0;
+    }
   }
   if (spotifyflag == 1){
     if (isMouseInRange(settingsx,settingsy,settingsw,settingsh)){
@@ -1024,6 +1100,10 @@ void mouseClicked(){
     }
     if (isMouseInRange(musicx,musicy,musicw,musich)){
       musicflag = 1;
+      spotifyflag = 0;
+    }
+    if (isMouseInRange(plainmirrx,plainmirry,plainmirrw,plainmirrh)){
+      userprofile1flag =1;
       spotifyflag = 0;
     }
   }
@@ -1072,6 +1152,10 @@ void mouseClicked(){
       redditflag = 1;
       twitterflag = 0;
     }
+    if (isMouseInRange(plainmirrx,plainmirry,plainmirrw,plainmirrh)){
+      userprofile1flag =1;
+      twitterflag = 0;
+    }
   }
   if (instaflag == 1){
     if (isMouseInRange(settingsx,settingsy,settingsw,settingsh)){
@@ -1116,6 +1200,10 @@ void mouseClicked(){
     }
     if (isMouseInRange(redditx,reddity,redditw,reddith)){
       redditflag = 1;
+      instaflag = 0;
+    }
+    if (isMouseInRange(plainmirrx,plainmirry,plainmirrw,plainmirrh)){
+      userprofile1flag =1;
       instaflag = 0;
     }
   }
@@ -1164,6 +1252,10 @@ void mouseClicked(){
       instaflag = 1;
       redditflag = 0;
     } 
+    if (isMouseInRange(plainmirrx,plainmirry,plainmirrw,plainmirrh)){
+      userprofile1flag =1;
+      redditflag = 0;
+    }
   }
   if (facebookflag == 1){
     if (isMouseInRange(settingsx,settingsy,settingsw,settingsh)){
@@ -1208,6 +1300,10 @@ void mouseClicked(){
     }
     if (isMouseInRange(redditx,reddity,redditw,reddith)){
       redditflag = 1;
+      facebookflag = 0;
+    }
+    if (isMouseInRange(plainmirrx,plainmirry,plainmirrw,plainmirrh)){
+      userprofile1flag =1;
       facebookflag = 0;
     }
   }
@@ -1261,6 +1357,10 @@ void mouseClicked(){
       locationflag = 1;
       settingsflag = 0;
     }
+    if (isMouseInRange(plainmirrx,plainmirry,plainmirrw,plainmirrh)){
+      userprofile1flag =1;
+      settingsflag = 0;
+    }
   }
   
   if (languageflag == 1){
@@ -1306,6 +1406,10 @@ void mouseClicked(){
     }
     if (isMouseInRange(locx,locy,locw,loch)){
       locationflag = 1;
+      languageflag = 0;
+    }
+    if (isMouseInRange(plainmirrx,plainmirry,plainmirrw,plainmirrh)){
+      userprofile1flag =1;
       languageflag = 0;
     }
   }
@@ -1355,6 +1459,10 @@ void mouseClicked(){
       locationflag = 1;
       waterusageflag = 0;
     }
+    if (isMouseInRange(plainmirrx,plainmirry,plainmirrw,plainmirrh)){
+      userprofile1flag =1;
+      waterusageflag = 0;
+    }
   }
   
   if (brightnessflag == 1){
@@ -1400,6 +1508,10 @@ void mouseClicked(){
     }
     if (isMouseInRange(locx,locy,locw,loch)){
       locationflag = 1;
+      brightnessflag = 0;
+    }
+    if (isMouseInRange(plainmirrx,plainmirry,plainmirrw,plainmirrh)){
+      userprofile1flag =1;
       brightnessflag = 0;
     }
   }
@@ -1448,6 +1560,17 @@ void mouseClicked(){
     if (isMouseInRange(brightx,brighty,brightw,brighth)){
       brightnessflag = 1;
       locationflag = 0;
+    }
+    if (isMouseInRange(plainmirrx,plainmirry,plainmirrw,plainmirrh)){
+      userprofile1flag =1;
+      locationflag = 0;
+    }
+  }
+  
+  if (tutorialflag == 1){
+    if (isMouseInRange(plainmirrx,plainmirry,plainmirrw,plainmirrh)){
+      userprofile1flag =1;
+      tutorialflag = 0;
     }
   }
   
