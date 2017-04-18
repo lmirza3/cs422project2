@@ -27,7 +27,11 @@ PImage alerts,
        twitter,
        insta,
        facebook,
-       reddit;
+       reddit,
+       language,
+       waterusage,
+       location,
+       brightness;
 PImage current, off;
 
 // Flags
@@ -59,13 +63,10 @@ int mediaflag = 0;
 int socialsettingsflag = 0;
 int settingsflag = 0;
 int profileflag = 0;
-int newsettingsflag = 0;
-int mediasettingsflag = 0;
-int locationsettingsflag = 0;
-int languagesettingsflag = 0;
-int socialinstagramflag = 0;
-int waterusagesettingsflag = 0;
-int offflag = 0;
+int languageflag = 0;
+int waterusageflag = 0;
+int brightnessflag = 0;
+int locationflag = 0;
 
 // login button dimensions
 int loginx = 320;
@@ -152,7 +153,7 @@ int cartw = 130;
 int carth = 180;
 
 int weather2x=100;
-int weather2y=760;
+int weather2y=960;
 int weather2w=130;
 int weather2h=180;
 
@@ -199,13 +200,13 @@ int reddith = 153;
 
 void setup(){
   size(2732,1536);
-  main = loadImage("Main.jpg");
-  accounts = loadImage("Accounts2.jpg");
+  main = loadImage("mainaccounts.jpg");
+  accounts = loadImage("accounticons.jpg");
   alerts = loadImage("Alerts.jpg");
   guestmain = loadImage("Guest.jpg");
   userprofile1 = loadImage("BasicBackground2.jpg");
   calendar = loadImage("Calendar.jpg");
-  settings = loadImage("Settings.jpg");
+  settings = loadImage("settings1.jpg");
   users = loadImage("Profile.jpg");
   weather = loadImage("Weather.jpg");
   plan = loadImage("Plan.jpg");
@@ -223,14 +224,39 @@ void setup(){
   facebook = loadImage("Facebook.jpg");
   insta = loadImage("Instagram.jpg");
   
+  language = loadImage("Language.jpg");
+  waterusage = loadImage("waterusage.jpg");
+  brightness = loadImage("Brightness.jpg");
+  location = loadImage("Location.jpg");
+  
   
   current = main;
   
 }
 
+int langx = 46;
+int langy = 380;
+int langw = 250;
+int langh = 67;
+
+int locx = 46;
+int locy = 470;
+int locw = 270;
+int loch = 67;
+
+int brightx = 46;
+int brighty = 560;
+int brightw = 310;
+int brighth = 67;
+
+int waterx = 46;
+int watery = 650;
+int waterw = 345;
+int waterh = 67;
+
 void draw(){
   background(current);
-  //rect(60,740,220,200);
+  //rect(46,650,345,67);
 
   //done
   if (loginflag == 1){
@@ -309,6 +335,15 @@ void draw(){
     current = reddit;
   }
   else if (facebookflag == 1){
+    current = facebook;
+  }
+  else if (languageflag == 1){
+    current = language;
+  }else if (brightnessflag == 1){
+    current = brightness;
+  }else if (locationflag == 1){
+    current = facebook;
+  }else if (waterusageflag == 1){
     current = facebook;
   }
 
@@ -454,6 +489,10 @@ void mouseClicked(){
   if (newsflag == 1){
     if (isMouseInRange(calendar2x,calendar2y,calendar2w,calendar2h)){
       calendarflag = 1;
+      newsflag = 0;
+    }
+    if (isMouseInRange(planx,plany,planw,planh)){
+      planflag = 1;
       newsflag = 0;
     }
     if (isMouseInRange(settingsx,settingsy,settingsw,settingsh)){
@@ -777,31 +816,585 @@ void mouseClicked(){
     }
   }
   if (cartflag == 1){
-    current = cart;
+    if (isMouseInRange(uberx,ubery,uberw,uberh)){
+      uberflag = 1;
+      cartflag = 0;
+    }
+    if (isMouseInRange(mapsx,mapsy,mapsw,mapsh)){
+      mapsflag = 1;
+      cartflag = 0;
+    }
+    if (isMouseInRange(weather2x,weather2y,weather2w,weather2h)){
+      weatherflag = 1;
+      cartflag = 0;
+    }
+    if (isMouseInRange(calendar2x,calendar2y,calendar2w,calendar2h)){
+      calendarflag = 1;
+      cartflag = 0;
+    }
+    if (isMouseInRange(timex,timey,timew,timeh)){
+      calendarflag = 1;
+      cartflag = 0;
+    }
+    if (isMouseInRange(settingsx,settingsy,settingsw,settingsh)){
+      settingsflag = 1;
+      cartflag = 0;
+    }
+    if (isMouseInRange(weatherx,weathery,weatherw,weatherh)){
+      weatherflag = 1;
+      cartflag = 0;
+    }
+    if (isMouseInRange(newsx,newsy,newsw,newsh)){
+      newsflag = 1;
+      cartflag = 0;
+    }
+    if (isMouseInRange(mediax,mediay,mediaw,mediah)){
+      mediaflag = 1;
+      cartflag = 0;
+    }
+    if (isMouseInRange(healthx,healthy,healthw,healthh)){
+      healthflag = 1;
+      cartflag = 0;
+    }
+    if (isMouseInRange(socialx,socialy,socialw,socialh)){
+      socialflag = 1;
+      cartflag = 0;
+    }    
+    if (isMouseInRange(userprofilesx,userprofilesy,userprofilesw,userprofilesh)){
+      usersflag = 1;
+      cartflag = 0;
+    }
   }
   if (mapsflag == 1){
-    current = maps;
+    if (isMouseInRange(uberx,ubery,uberw,uberh)){
+      uberflag = 1;
+      mapsflag = 0;
+    }
+    if (isMouseInRange(cartx,carty,cartw,carth)){
+      cartflag = 1;
+      mapsflag = 0;
+    }
+    if (isMouseInRange(weather2x,weather2y,weather2w,weather2h)){
+      weatherflag = 1;
+      mapsflag = 0;
+    }
+    if (isMouseInRange(calendar2x,calendar2y,calendar2w,calendar2h)){
+      calendarflag = 1;
+      mapsflag = 0;
+    }
+    if (isMouseInRange(timex,timey,timew,timeh)){
+      calendarflag = 1;
+      mapsflag = 0;
+    }
+    if (isMouseInRange(settingsx,settingsy,settingsw,settingsh)){
+      settingsflag = 1;
+      mapsflag = 0;
+    }
+    if (isMouseInRange(weatherx,weathery,weatherw,weatherh)){
+      weatherflag = 1;
+      mapsflag = 0;
+    }
+    if (isMouseInRange(newsx,newsy,newsw,newsh)){
+      newsflag = 1;
+      mapsflag = 0;
+    }
+    if (isMouseInRange(mediax,mediay,mediaw,mediah)){
+      mediaflag = 1;
+      mapsflag = 0;
+    }
+    if (isMouseInRange(healthx,healthy,healthw,healthh)){
+      healthflag = 1;
+      mapsflag = 0;
+    }
+    if (isMouseInRange(socialx,socialy,socialw,socialh)){
+      socialflag = 1;
+      mapsflag = 0;
+    }    
+    if (isMouseInRange(userprofilesx,userprofilesy,userprofilesw,userprofilesh)){
+      usersflag = 1;
+      mapsflag = 0;
+    }
   }
   if (brushflag == 1){
-    current = brush;
+    if (isMouseInRange(settingsx,settingsy,settingsw,settingsh)){
+      settingsflag = 1;
+      brushflag = 0;
+    }
+    if (isMouseInRange(timex,timey,timew,timeh)){
+      calendarflag = 1;
+      brushflag = 0;
+    }
+    if (isMouseInRange(weatherx,weathery,weatherw,weatherh)){
+      weatherflag = 1;
+      brushflag = 0;
+    }  
+    if (isMouseInRange(planx,plany,planw,planh)){
+      planflag = 1;
+      brushflag = 0;
+    }
+    if (isMouseInRange(newsx,newsy,newsw,newsh)){
+      newsflag = 1;
+      brushflag = 0;
+    }
+    if (isMouseInRange(mediax,mediay,mediaw,mediah)){
+      mediaflag = 1;
+      brushflag = 0;
+    }
+    if (isMouseInRange(socialx,socialy,socialw,socialh)){
+      socialflag = 1;
+      brushflag = 0;
+    }
+    if (isMouseInRange(userprofilesx,userprofilesy,userprofilesw,userprofilesh)){
+      usersflag = 1;
+      brushflag = 0;
+    }
   }
   if (musicflag == 1){
-    current = music;  
+    if (isMouseInRange(settingsx,settingsy,settingsw,settingsh)){
+      settingsflag = 1;
+      musicflag = 0;
+    }
+    if (isMouseInRange(timex,timey,timew,timeh)){
+      calendarflag = 1;
+      musicflag = 0;
+    }
+    if (isMouseInRange(weatherx,weathery,weatherw,weatherh)){
+      weatherflag = 1;
+      musicflag = 0;
+    }  
+    if (isMouseInRange(planx,plany,planw,planh)){
+      planflag = 1;
+      musicflag = 0;
+    }
+    if (isMouseInRange(newsx,newsy,newsw,newsh)){
+      newsflag = 1;
+      musicflag = 0;
+    }
+    if (isMouseInRange(healthx,healthy,healthw,healthh)){
+      healthflag = 1;
+      musicflag = 0;
+    }
+    if (isMouseInRange(socialx,socialy,socialw,socialh)){
+      socialflag = 1;
+      musicflag = 0;
+    }
+    if (isMouseInRange(userprofilesx,userprofilesy,userprofilesw,userprofilesh)){
+      usersflag = 1;
+      musicflag = 0;
+    }
+    if (isMouseInRange(spotifyx,spotifyy,spotifyw,spotifyh)){
+      spotifyflag = 1;
+      musicflag = 0;
+    }  
   }
   if (spotifyflag == 1){
-    current = media;
+    if (isMouseInRange(settingsx,settingsy,settingsw,settingsh)){
+      settingsflag = 1;
+      spotifyflag = 0;
+    }
+    if (isMouseInRange(timex,timey,timew,timeh)){
+      calendarflag = 1;
+      spotifyflag = 0;
+    }
+    if (isMouseInRange(weatherx,weathery,weatherw,weatherh)){
+      weatherflag = 1;
+      spotifyflag = 0;
+    }  
+    if (isMouseInRange(planx,plany,planw,planh)){
+      planflag = 1;
+      spotifyflag = 0;
+    }
+    if (isMouseInRange(newsx,newsy,newsw,newsh)){
+      newsflag = 1;
+      spotifyflag = 0;
+    }
+    if (isMouseInRange(healthx,healthy,healthw,healthh)){
+      healthflag = 1;
+      spotifyflag = 0;
+    }
+    if (isMouseInRange(socialx,socialy,socialw,socialh)){
+      socialflag = 1;
+      spotifyflag = 0;
+    }
+    if (isMouseInRange(userprofilesx,userprofilesy,userprofilesw,userprofilesh)){
+      usersflag = 1;
+      spotifyflag = 0;
+    }
+    if (isMouseInRange(musicx,musicy,musicw,musich)){
+      musicflag = 1;
+      spotifyflag = 0;
+    }
   }
   if (twitterflag == 1){
-    current = twitter;
+    if (isMouseInRange(settingsx,settingsy,settingsw,settingsh)){
+      settingsflag = 1;
+      twitterflag = 0;
+    }
+    if (isMouseInRange(timex,timey,timew,timeh)){
+      calendarflag = 1;
+      twitterflag = 0;
+    }
+    if (isMouseInRange(weatherx,weathery,weatherw,weatherh)){
+      weatherflag = 1;
+      twitterflag = 0;
+    }  
+    if (isMouseInRange(planx,plany,planw,planh)){
+      planflag = 1;
+      twitterflag = 0;
+    }
+    if (isMouseInRange(newsx,newsy,newsw,newsh)){
+      newsflag = 1;
+      twitterflag = 0;
+    }
+    if (isMouseInRange(mediax,mediay,mediaw,mediah)){
+      mediaflag = 1;
+      twitterflag = 0;
+    }
+    if (isMouseInRange(healthx,healthy,healthw,healthh)){
+      healthflag = 1;
+      twitterflag = 0;
+    }
+    if (isMouseInRange(userprofilesx,userprofilesy,userprofilesw,userprofilesh)){
+      usersflag = 1;
+      twitterflag = 0;
+    }
+    if (isMouseInRange(facebookx,facebooky,facebookw,facebookh)){
+      facebookflag = 1;
+      twitterflag = 0;
+    }
+    if (isMouseInRange(instax,instay,instaw,instah)){
+      instaflag = 1;
+      twitterflag = 0;
+    }
+    if (isMouseInRange(redditx,reddity,redditw,reddith)){
+      redditflag = 1;
+      twitterflag = 0;
+    }
   }
   if (instaflag == 1){
-    current = insta;
+    if (isMouseInRange(settingsx,settingsy,settingsw,settingsh)){
+      settingsflag = 1;
+      instaflag = 0;
+    }
+    if (isMouseInRange(timex,timey,timew,timeh)){
+      calendarflag = 1;
+      instaflag = 0;
+    }
+    if (isMouseInRange(weatherx,weathery,weatherw,weatherh)){
+      weatherflag = 1;
+      instaflag = 0;
+    }  
+    if (isMouseInRange(planx,plany,planw,planh)){
+      planflag = 1;
+      instaflag = 0;
+    }
+    if (isMouseInRange(newsx,newsy,newsw,newsh)){
+      newsflag = 1;
+      instaflag = 0;
+    }
+    if (isMouseInRange(mediax,mediay,mediaw,mediah)){
+      mediaflag = 1;
+      instaflag = 0;
+    }
+    if (isMouseInRange(healthx,healthy,healthw,healthh)){
+      healthflag = 1;
+      instaflag = 0;
+    }
+    if (isMouseInRange(userprofilesx,userprofilesy,userprofilesw,userprofilesh)){
+      usersflag = 1;
+      instaflag = 0;
+    }
+    if (isMouseInRange(twitterx,twittery,twitterw,twitterh)){
+      twitterflag = 1;
+      instaflag = 0;
+    }
+    if (isMouseInRange(facebookx,facebooky,facebookw,facebookh)){
+      facebookflag = 1;
+      instaflag = 0;
+    }
+    if (isMouseInRange(redditx,reddity,redditw,reddith)){
+      redditflag = 1;
+      instaflag = 0;
+    }
   }
   if (redditflag == 1){
-    current = reddit;
+    if (isMouseInRange(settingsx,settingsy,settingsw,settingsh)){
+      settingsflag = 1;
+      redditflag = 0;
+    }
+    if (isMouseInRange(timex,timey,timew,timeh)){
+      calendarflag = 1;
+      redditflag = 0;
+    }
+    if (isMouseInRange(weatherx,weathery,weatherw,weatherh)){
+      weatherflag = 1;
+      redditflag = 0;
+    }  
+    if (isMouseInRange(planx,plany,planw,planh)){
+      planflag = 1;
+      redditflag = 0;
+    }
+    if (isMouseInRange(newsx,newsy,newsw,newsh)){
+      newsflag = 1;
+      redditflag = 0;
+    }
+    if (isMouseInRange(mediax,mediay,mediaw,mediah)){
+      mediaflag = 1;
+      redditflag = 0;
+    }
+    if (isMouseInRange(healthx,healthy,healthw,healthh)){
+      healthflag = 1;
+      redditflag = 0;
+    }
+    if (isMouseInRange(userprofilesx,userprofilesy,userprofilesw,userprofilesh)){
+      usersflag = 1;
+      redditflag = 0;
+    }
+    if (isMouseInRange(twitterx,twittery,twitterw,twitterh)){
+      twitterflag = 1;
+      redditflag = 0;
+    }
+    if (isMouseInRange(facebookx,facebooky,facebookw,facebookh)){
+      facebookflag = 1;
+      redditflag = 0;
+    }
+    if (isMouseInRange(instax,instay,instaw,instah)){
+      instaflag = 1;
+      redditflag = 0;
+    } 
   }
   if (facebookflag == 1){
-    current = facebook;
+    if (isMouseInRange(settingsx,settingsy,settingsw,settingsh)){
+      settingsflag = 1;
+      facebookflag = 0;
+    }
+    if (isMouseInRange(timex,timey,timew,timeh)){
+      calendarflag = 1;
+      facebookflag = 0;
+    }
+    if (isMouseInRange(weatherx,weathery,weatherw,weatherh)){
+      weatherflag = 1;
+      facebookflag = 0;
+    }  
+    if (isMouseInRange(planx,plany,planw,planh)){
+      planflag = 1;
+      facebookflag = 0;
+    }
+    if (isMouseInRange(newsx,newsy,newsw,newsh)){
+      newsflag = 1;
+      facebookflag = 0;
+    }
+    if (isMouseInRange(mediax,mediay,mediaw,mediah)){
+      mediaflag = 1;
+      facebookflag = 0;
+    }
+    if (isMouseInRange(healthx,healthy,healthw,healthh)){
+      healthflag = 1;
+      facebookflag = 0;
+    }
+    if (isMouseInRange(userprofilesx,userprofilesy,userprofilesw,userprofilesh)){
+      usersflag = 1;
+      facebookflag = 0;
+    }
+    if (isMouseInRange(twitterx,twittery,twitterw,twitterh)){
+      twitterflag = 1;
+      facebookflag = 0;
+    }
+    if (isMouseInRange(instax,instay,instaw,instah)){
+      instaflag = 1;
+      facebookflag = 0;
+    }
+    if (isMouseInRange(redditx,reddity,redditw,reddith)){
+      redditflag = 1;
+      facebookflag = 0;
+    }
+  }
+  
+  if (settingsflag == 1){
+    if (isMouseInRange(timex,timey,timew,timeh)){
+      calendarflag = 1;
+      settingsflag = 0;
+    }
+    if (isMouseInRange(weatherx,weathery,weatherw,weatherh)){
+      weatherflag = 1;
+      settingsflag = 0;
+    }  
+    if (isMouseInRange(planx,plany,planw,planh)){
+      planflag = 1;
+      settingsflag = 0;
+    }
+    if (isMouseInRange(newsx,newsy,newsw,newsh)){
+      newsflag = 1;
+      settingsflag = 0;
+    }
+    if (isMouseInRange(mediax,mediay,mediaw,mediah)){
+      mediaflag = 1;
+      settingsflag = 0;
+    }
+    if (isMouseInRange(healthx,healthy,healthw,healthh)){
+      healthflag = 1;
+      settingsflag = 0;
+    }
+    if (isMouseInRange(socialx,socialy,socialw,socialh)){
+      socialflag = 1;
+      settingsflag = 0;
+    }
+    if (isMouseInRange(userprofilesx,userprofilesy,userprofilesw,userprofilesh)){
+      usersflag = 1;
+      settingsflag = 0;
+    }
+  }
+  
+  if (languageflag == 1){
+    if (isMouseInRange(timex,timey,timew,timeh)){
+      calendarflag = 1;
+      settingsflag = 0;
+    }
+    if (isMouseInRange(weatherx,weathery,weatherw,weatherh)){
+      weatherflag = 1;
+      settingsflag = 0;
+    }  
+    if (isMouseInRange(planx,plany,planw,planh)){
+      planflag = 1;
+      settingsflag = 0;
+    }
+    if (isMouseInRange(newsx,newsy,newsw,newsh)){
+      newsflag = 1;
+      settingsflag = 0;
+    }
+    if (isMouseInRange(mediax,mediay,mediaw,mediah)){
+      mediaflag = 1;
+      settingsflag = 0;
+    }
+    if (isMouseInRange(healthx,healthy,healthw,healthh)){
+      healthflag = 1;
+      settingsflag = 0;
+    }
+    if (isMouseInRange(socialx,socialy,socialw,socialh)){
+      socialflag = 1;
+      settingsflag = 0;
+    }
+    if (isMouseInRange(userprofilesx,userprofilesy,userprofilesw,userprofilesh)){
+      usersflag = 1;
+      settingsflag = 0;
+    }
+  }
+  
+  if (waterusageflag == 1){
+    if (isMouseInRange(timex,timey,timew,timeh)){
+      calendarflag = 1;
+      settingsflag = 0;
+    }
+    if (isMouseInRange(weatherx,weathery,weatherw,weatherh)){
+      weatherflag = 1;
+      settingsflag = 0;
+    }  
+    if (isMouseInRange(planx,plany,planw,planh)){
+      planflag = 1;
+      settingsflag = 0;
+    }
+    if (isMouseInRange(newsx,newsy,newsw,newsh)){
+      newsflag = 1;
+      settingsflag = 0;
+    }
+    if (isMouseInRange(mediax,mediay,mediaw,mediah)){
+      mediaflag = 1;
+      settingsflag = 0;
+    }
+    if (isMouseInRange(healthx,healthy,healthw,healthh)){
+      healthflag = 1;
+      settingsflag = 0;
+    }
+    if (isMouseInRange(socialx,socialy,socialw,socialh)){
+      socialflag = 1;
+      settingsflag = 0;
+    }
+    if (isMouseInRange(userprofilesx,userprofilesy,userprofilesw,userprofilesh)){
+      usersflag = 1;
+      settingsflag = 0;
+    }
+  }
+  
+  if (brightnessflag == 1){
+    if (isMouseInRange(timex,timey,timew,timeh)){
+      calendarflag = 1;
+      settingsflag = 0;
+    }
+    if (isMouseInRange(weatherx,weathery,weatherw,weatherh)){
+      weatherflag = 1;
+      settingsflag = 0;
+    }  
+    if (isMouseInRange(planx,plany,planw,planh)){
+      planflag = 1;
+      settingsflag = 0;
+    }
+    if (isMouseInRange(newsx,newsy,newsw,newsh)){
+      newsflag = 1;
+      settingsflag = 0;
+    }
+    if (isMouseInRange(mediax,mediay,mediaw,mediah)){
+      mediaflag = 1;
+      settingsflag = 0;
+    }
+    if (isMouseInRange(healthx,healthy,healthw,healthh)){
+      healthflag = 1;
+      settingsflag = 0;
+    }
+    if (isMouseInRange(socialx,socialy,socialw,socialh)){
+      socialflag = 1;
+      settingsflag = 0;
+    }
+    if (isMouseInRange(userprofilesx,userprofilesy,userprofilesw,userprofilesh)){
+      usersflag = 1;
+      settingsflag = 0;
+    }
+  }
+  
+  if (locationflag == 1){
+    if (isMouseInRange(timex,timey,timew,timeh)){
+      calendarflag = 1;
+      locationflag = 0;
+    }
+    if (isMouseInRange(weatherx,weathery,weatherw,weatherh)){
+      weatherflag = 1;
+      locationflag = 0;
+    }  
+    if (isMouseInRange(planx,plany,planw,planh)){
+      planflag = 1;
+      locationflag = 0;
+    }
+    if (isMouseInRange(newsx,newsy,newsw,newsh)){
+      newsflag = 1;
+      locationflag = 0;
+    }
+    if (isMouseInRange(mediax,mediay,mediaw,mediah)){
+      mediaflag = 1;
+      locationflag = 0;
+    }
+    if (isMouseInRange(healthx,healthy,healthw,healthh)){
+      healthflag = 1;
+      locationflag = 0;
+    }
+    if (isMouseInRange(socialx,socialy,socialw,socialh)){
+      socialflag = 1;
+      locationflag = 0;
+    }
+    if (isMouseInRange(userprofilesx,userprofilesy,userprofilesw,userprofilesh)){
+      usersflag = 1;
+      locationflag = 0;
+    }
+    if (isMouseInRange(waterx,watery,waterw,waterh)){
+      waterusageflag = 1;
+      locationflag = 0;
+    }
+    if (isMouseInRange(userprofilesx,userprofilesy,userprofilesw,userprofilesh)){
+      usersflag = 1;
+      locationflag = 0;
+    }
+    if (isMouseInRange(userprofilesx,userprofilesy,userprofilesw,userprofilesh)){
+      usersflag = 1;
+      locationflag = 0;
+    }
   }
   
 }
